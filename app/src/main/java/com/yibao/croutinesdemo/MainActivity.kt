@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         job = Job()
@@ -35,8 +34,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             pb.visibility = View.VISIBLE
             launch {
                 val result = withContext(Dispatchers.IO) {
-                    retrofit.getListRepos(edit.text.toString()).execute()
-                }
+                retrofit.getListRepos(edit.text.toString()).execute()
+            }
                 if (result.isSuccessful) {
                     pb.visibility = View.GONE
                     Log.d("lsp", result.body().toString())
